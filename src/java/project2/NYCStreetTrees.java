@@ -35,7 +35,7 @@ public class NYCStreetTrees {
 
                     final String terminateString = "quit";
 
-                    while (line.equalsIgnoreCase(terminateString)) {
+                    while (!line.equalsIgnoreCase(terminateString)) {
                         System.out.println("Enter the tree species to learn more about it (\"quit\" to stop):");
 
                         line = scanner.nextLine();

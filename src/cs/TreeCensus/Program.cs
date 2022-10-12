@@ -83,7 +83,7 @@ namespace TreeCensus
 
                             TreeSpeciesCollection byCommonName = species.GetByCommonName(line);
                             TreeSpeciesCollection byLatinName = species.GetByLatinName(line);
-                            
+
                             if (byCommonName.Count == 0 && byLatinName.Count == 0)
                             {
                                 await Console.Out.WriteLineAsync(GetNotFoundMessage(line));

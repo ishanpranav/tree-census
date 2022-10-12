@@ -10,10 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
-		THIRD-PARTY-NOTICES.txt = THIRD-PARTY-NOTICES.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeCensus", "src\cs\TreeCensus\TreeCensus.csproj", "{6BD689B1-7826-4267-AB99-30A361D8352D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TreeCensus.Documentation", "docs\csharp\TreeCensus.Documentation\TreeCensus.Documentation.csproj", "{6A978FE8-4897-46C9-9964-127FFE4F3E20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +26,10 @@ Global
 		{6BD689B1-7826-4267-AB99-30A361D8352D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BD689B1-7826-4267-AB99-30A361D8352D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BD689B1-7826-4267-AB99-30A361D8352D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A978FE8-4897-46C9-9964-127FFE4F3E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A978FE8-4897-46C9-9964-127FFE4F3E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A978FE8-4897-46C9-9964-127FFE4F3E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A978FE8-4897-46C9-9964-127FFE4F3E20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

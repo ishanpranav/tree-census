@@ -2,11 +2,24 @@
 
 namespace TreeCensus
 {
-    internal class TreeSpecies : IEquatable<TreeSpecies>
+    /// <summary>
+    /// Represents a tree species.
+    /// </summary>
+    public class TreeSpecies : IEquatable<TreeSpecies>, ISpecies
     {
+        /// <inheritdoc/>
         public string LatinName { get; }
+
+        /// <inheritdoc/>
         public string CommonName { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TreeSpecies"/> class.
+        /// </summary>
+        /// <param name="commonName">The common name.</param>
+        /// <param name="latinName">The Latin name.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="commonName"/> is <see langword="null"/>.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="latinName"/> is <see langword="null"/>.</exception>
         public TreeSpecies(string commonName, string latinName)
         {
             if (commonName == null)
@@ -24,16 +37,19 @@ namespace TreeCensus
             }
         }
 
+        /// <inheritdoc/>
         public override bool Equals(object? obj)
         {
             return Equals(obj as TreeSpecies);
         }
 
+        /// <inheritdoc/>
         public bool Equals(TreeSpecies? other)
         {
             return other != null && CommonName.Equals(other.CommonName, StringComparison.OrdinalIgnoreCase) && LatinName.Equals(other.LatinName, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <inheritdoc/>
         public override int GetHashCode()
         {
             HashCode result = new HashCode();

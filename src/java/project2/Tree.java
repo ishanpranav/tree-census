@@ -19,8 +19,9 @@ public class Tree implements Comparable<Tree>, Species {
         return new String[] { MANHATTAN_BOROUGH, "Bronx", "Brooklyn", "Queens", "Staten Island" };
     }
 
-    private int treeID;
-    private TreeSpecies species;
+    private final int treeID;
+    private final TreeSpecies species;
+    
     private String status;
     private String health;
     private int zipCode;

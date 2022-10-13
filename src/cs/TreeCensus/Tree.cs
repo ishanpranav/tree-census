@@ -115,19 +115,7 @@ namespace TreeCensus
         /// Initializes a new instance of the <see cref="Tree"/> class.
         /// </summary>
         public Tree() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Tree"/> class.
-        /// </summary>
-        /// <param name="id">The tree identifier.</param>
-        /// <param name="species">The tree species.</param>
-        public Tree(int id, TreeSpecies species)
-        {
-            Id = id;
-            LatinName = species.LatinName;
-            CommonName = species.CommonName;
-        }
-
+        
         /// <inheritdoc/>
         public int CompareTo(object? obj)
         {

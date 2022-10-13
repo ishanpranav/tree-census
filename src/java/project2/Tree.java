@@ -20,10 +20,9 @@ public class Tree implements Comparable<Tree>, Species {
     }
 
     private int treeID;
+    private TreeSpecies species;
     private String status;
     private String health;
-    private String latinName;
-    private String commonName;
     private int zipCode;
     private String borough = MANHATTAN_BOROUGH;
     private double x;
@@ -32,18 +31,23 @@ public class Tree implements Comparable<Tree>, Species {
     /**
      * Initializes a new instance of the {@link Tree} class.
      * 
-     * @param treeID  the tree identifier.
-     * @param species the tree species.
-     * @throws IllegalArgumentException species is null.
+     * @param treeID  the tree identifier, a non-negative integer. This argument
+     *                represents the {@code tree_id} field in the dataset.
+     * @param species the tree species. This argument represents the
+     *                {@code spc_latin} and {@code spc_common} fields in the
+     *                dataset.
+     * @throws IllegalArgumentException if treeID is negative.
+     * @throws IllegalArgumentException if species is null.
      */
     public Tree(int treeID, TreeSpecies species) throws IllegalArgumentException {
-        setTreeID(treeID);
-
-        if (species == null) {
+        if (treeID < 0) {
+            throw new IllegalArgumentException(
+                    "Value is out of range. A non-negative number is required. Argument name: treeID.");
+        } else if (species == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: species.");
         } else {
-            setLatinName(species.getLatinName());
-            setCommonName(species.getCommonName());
+            this.treeID = treeID;
+            this.species = species;
         }
     }
 
@@ -55,22 +59,6 @@ public class Tree implements Comparable<Tree>, Species {
      */
     public int getTreeID() {
         return treeID;
-    }
-
-    /**
-     * Sets the tree identifier. This property represents the {@code tree_id} field
-     * in the dataset.
-     * 
-     * @param treeID a non-negative integer identifier.
-     * @throws IllegalArgumentException if treeID is negative.
-     */
-    public void setTreeID(int treeID) {
-        if (treeID < 0) {
-            throw new IllegalArgumentException(
-                    "Value is out of range. A non-negative number is required. Argument name: treeID.");
-        } else {
-            this.treeID = treeID;
-        }
     }
 
     /**
@@ -137,42 +125,12 @@ public class Tree implements Comparable<Tree>, Species {
 
     /** {@inheritDoc} */
     public String getLatinName() {
-        return latinName;
-    }
-
-    /**
-     * Sets the scientific (Latin) name of the tree's species. This property
-     * represents the {@code spc_latin} field in the dataset.
-     * 
-     * @param latinName the scientific name, a non-null string.
-     * @throws IllegalArgumentException if latinName is null.
-     */
-    public void setLatinName(String latinName) {
-        if (latinName == null) {
-            throw new IllegalArgumentException("Value cannot be null. Argument name: latinName.");
-        } else {
-            this.latinName = latinName;
-        }
+        return species.getLatinName();
     }
 
     /** {@inheritDoc} */
     public String getCommonName() {
-        return commonName;
-    }
-
-    /**
-     * Sets the common (English) name of the tree's species. This property
-     * represents the {@code spc_common} field in the dataset.
-     * 
-     * @param commonName the common name, a non-null string.
-     * @throws IllegalArgumentException if commonName is null.
-     */
-    public void setCommonName(String commonName) {
-        if (commonName == null) {
-            throw new IllegalArgumentException("Value cannot be null. Argument name: commonName.");
-        } else {
-            this.commonName = commonName;
-        }
+        return species.getCommonName();
     }
 
     /**
@@ -279,7 +237,7 @@ public class Tree implements Comparable<Tree>, Species {
     /** {@inheritDoc} */
     public int compareTo(Tree o) {
         Tree other = (Tree) o;
-        int result = commonName.compareToIgnoreCase(other.commonName);
+        int result = getCommonName().compareToIgnoreCase(other.getCommonName());
 
         if (result == 0) {
             Comparable<Integer> comparable = treeID;
@@ -298,20 +256,20 @@ public class Tree implements Comparable<Tree>, Species {
         } else {
             Tree other = (Tree) obj;
 
-            return treeID == other.treeID && latinName.equalsIgnoreCase(other.latinName)
-                    && commonName.equalsIgnoreCase(other.commonName);
+            return treeID == other.treeID && getLatinName().equalsIgnoreCase(other.getLatinName())
+                    && getCommonName().equalsIgnoreCase(other.getCommonName());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(treeID, latinName, commonName);
+        return Objects.hash(treeID, getLatinName(), getCommonName());
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return String.format("%s (%s) #%d", commonName, latinName, treeID);
+        return String.format("%s (%s) #%d", getCommonName(), getLatinName(), treeID);
     }
 }

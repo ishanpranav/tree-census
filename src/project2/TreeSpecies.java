@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Represents a tree species.
  */
-public class TreeSpecies implements Species {
+public class TreeSpecies {
     private String latinName;
     private String commonName;
 
@@ -26,12 +26,22 @@ public class TreeSpecies implements Species {
         }
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Gets the scientific (Latin) name of the tree's species. This property
+     * represents the {@code spc_latin} field in the dataset.
+     * 
+     * @return The scientific name, a non-null string.
+     */
     public String getLatinName() {
         return latinName;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Gets the common (English) name of the tree's species. This property
+     * represents the {@code spc_common} field in the dataset.
+     * 
+     * @return The common name, a non-null string.
+     */
     public String getCommonName() {
         return commonName;
     }
@@ -42,7 +52,7 @@ public class TreeSpecies implements Species {
         if (obj == null || !(obj instanceof TreeSpecies)) {
             return false;
         } else {
-            TreeSpecies other = (TreeSpecies) obj;
+            final TreeSpecies other = (TreeSpecies) obj;
 
             return commonName.equalsIgnoreCase(other.commonName) && latinName.equalsIgnoreCase(other.latinName);
         }
@@ -51,6 +61,8 @@ public class TreeSpecies implements Species {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
+        // Hash upper-case strings to preserve case-insensitivity
+
         return Objects.hash(latinName.toUpperCase(), commonName.toUpperCase());
     }
 }

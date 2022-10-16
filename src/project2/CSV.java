@@ -48,7 +48,7 @@ public class CSV implements Closeable, Iterator<List<String>> {
 	@Override
 	public List<String> next() {
 		final ArrayList<String> results = new ArrayList<String>();
-		
+
 		boolean inQuotes = false;
 		boolean inField = false;
 		String line = scanner.nextLine();
@@ -58,24 +58,35 @@ public class CSV implements Closeable, Iterator<List<String>> {
 			char nextChar = line.charAt(i);
 
 			if (nextChar == '"') {
+				// Toggle quote and field status to enter or exit a field surrounded by
+				// quotation marks
+
 				boolean toggledValue = !inQuotes;
 
 				inQuotes = toggledValue;
 				inField = toggledValue;
 			} else if (Character.isWhitespace(nextChar)) {
 				if (inQuotes || inField) {
+					// Preserve whitespace within current field or if surrounded by quotation marks
+
 					fieldBuilder.append(nextChar);
 				}
 			} else if (nextChar == ',') {
 				if (inQuotes) {
+					// Preserve commas within current field if surrounded by quotation marks
+
 					fieldBuilder.append(nextChar);
 				} else {
+					// Realize the current field and move to the next field
+
 					results.add(fieldBuilder.toString());
 
 					fieldBuilder = new StringBuilder();
 					inField = false;
 				}
 			} else {
+				// Begin a new field or continue appending characters to the current field
+
 				fieldBuilder.append(nextChar);
 
 				inField = true;
@@ -83,6 +94,8 @@ public class CSV implements Closeable, Iterator<List<String>> {
 		}
 
 		if (fieldBuilder.length() > 0) {
+			// Realize remaining characters and include them as the last field
+	
 			results.add(fieldBuilder.toString().trim());
 		}
 

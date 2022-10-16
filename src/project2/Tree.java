@@ -7,7 +7,7 @@ import java.util.Objects;
  * 
  * @author Ishan Pranav
  */
-public class Tree implements Comparable<Tree>, Species {
+public class Tree implements Comparable<Tree> {
     private static final String MANHATTAN_BOROUGH = "Manhattan";
 
     /**
@@ -38,7 +38,7 @@ public class Tree implements Comparable<Tree>, Species {
      *                {@code spc_latin} and {@code spc_common} fields in the
      *                dataset.
      * @throws IllegalArgumentException if treeID is negative.
-     * @throws IllegalArgumentException if species is null.
+     * @throws IllegalArgumentException if species is {@code null}.
      */
     public Tree(int treeID, TreeSpecies species) throws IllegalArgumentException {
         if (treeID < 0) {
@@ -58,7 +58,7 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @return A non-negative integer identifier.
      */
-    public int getTreeID() {
+    public int getTree_id() {
         return treeID;
     }
 
@@ -124,13 +124,23 @@ public class Tree implements Comparable<Tree>, Species {
         }
     }
 
-    /** {@inheritDoc} */
-    public String getLatinName() {
+    /**
+     * Gets the scientific (Latin) name of the tree's species. This property
+     * represents the {@code spc_latin} field in the dataset.
+     * 
+     * @return The scientific name, a non-null string.
+     */
+    public String getSpc_Latin() {
         return species.getLatinName();
     }
 
-    /** {@inheritDoc} */
-    public String getCommonName() {
+    /**
+     * Gets the common (English) name of the tree's species. This property
+     * represents the {@code spc_common} field in the dataset.
+     * 
+     * @return The common name, a non-null string.
+     */
+    public String getSpc_common() {
         return species.getCommonName();
     }
 
@@ -140,7 +150,7 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @return The postcode, an integer between 00000 and 99999.
      */
-    public int getZipCode() {
+    public int getZipcode() {
         return zipCode;
     }
 
@@ -152,7 +162,7 @@ public class Tree implements Comparable<Tree>, Species {
      * @throws IllegalArgumentException if zipCode is less than 0 or greater than
      *                                  99999.
      */
-    public void setZipCode(int zipCode) {
+    public void setZipcode(int zipCode) {
         if (zipCode >= 0 && zipCode <= 99999) {
             this.zipCode = zipCode;
         } else {
@@ -169,7 +179,7 @@ public class Tree implements Comparable<Tree>, Species {
      *         {@code "Queens"}, or {@code "Staten Island"} to represent the
      *         borough. Borough names are case-insensitive.
      */
-    public String getBorough() {
+    public String getBoroname() {
         return borough;
     }
 
@@ -182,7 +192,7 @@ public class Tree implements Comparable<Tree>, Species {
      *                borough. Borough names are case-insensitive.
      * @throws IllegalArgumentException if borough is not a valid borough name.
      */
-    public void setBorough(String borough) {
+    public void setBoroname(String borough) {
         for (String item : getBoroughs()) {
             if (item.equalsIgnoreCase(borough)) {
                 this.borough = item;
@@ -201,7 +211,7 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @return The x-coordinate.
      */
-    public double getX() {
+    public double getX_sp() {
         return x;
     }
 
@@ -211,7 +221,7 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @param x the x-coordinate.
      */
-    public void setX(double x) {
+    public void setX_sp(double x) {
         this.x = x;
     }
 
@@ -221,7 +231,7 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @return the y-coordinate.
      */
-    public double getY() {
+    public double getY_sp() {
         return y;
     }
 
@@ -231,14 +241,14 @@ public class Tree implements Comparable<Tree>, Species {
      * 
      * @param y the y-coordinate.
      */
-    public void setY(double y) {
+    public void setY_sp(double y) {
         this.y = y;
     }
 
     /** {@inheritDoc} */
     public int compareTo(Tree o) {
         Tree other = (Tree) o;
-        int result = getCommonName().compareToIgnoreCase(other.getCommonName());
+        int result = getSpc_common().compareToIgnoreCase(other.getSpc_common());
 
         if (result == 0) {
             Comparable<Integer> comparable = treeID;
@@ -257,20 +267,20 @@ public class Tree implements Comparable<Tree>, Species {
         } else {
             Tree other = (Tree) obj;
 
-            return treeID == other.treeID && getLatinName().equalsIgnoreCase(other.getLatinName())
-                    && getCommonName().equalsIgnoreCase(other.getCommonName());
+            return treeID == other.treeID && getSpc_Latin().equalsIgnoreCase(other.getSpc_Latin())
+                    && getSpc_common().equalsIgnoreCase(other.getSpc_common());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(treeID, getLatinName(), getCommonName());
+        return Objects.hash(treeID, getSpc_Latin(), getSpc_common());
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return String.format("%s (%s) #%d", getCommonName(), getLatinName(), treeID);
+        return String.format("%s (%s) #%d", getSpc_common(), getSpc_Latin(), treeID);
     }
 }

@@ -4,36 +4,70 @@ import java.util.Iterator;
 
 /**
  * Represents a collection of trees.
+ * 
+ * @author Ishan Pranav
  */
 public class TreeList implements Iterable<Tree> {
+
+    /**
+     * Provides a node for the linked list.
+     * 
+     * @author Ishan Pranav
+     */
     private class TreeListNode {
         private Tree value;
         private TreeListNode next;
 
+        /**
+         * Initializes a new instance of the {@link TreeListNode} class.
+         * 
+         * @param value The node data.
+         */
         public TreeListNode(Tree value) {
             this.value = value;
         }
 
+        /**
+         * Gets the next node in the linked list.
+         * 
+         * @return A reference to the next node.
+         */
         public TreeListNode getNext() {
             return next;
         }
 
+        /**
+         * Gets the node data.
+         * 
+         * @return A {@link Tree} instance.
+         */
         public Tree getValue() {
             return value;
         }
     }
 
+    /**
+     * Provides an iterator for the linked list.
+     */
     private class TreeListIterator implements Iterator<Tree> {
         private TreeListNode current = head;
 
+        /**
+         * Initializes a new instance of the {@link TreeListIterator} class.
+         */
+        public TreeListIterator() {
+        }
+
+        /** {@inheritDoc} */
         @Override
         public boolean hasNext() {
             return current != null;
         }
 
+        /** {@inheritDoc} */
         @Override
         public Tree next() {
-            Tree result = current.getValue();
+            final Tree result = current.getValue();
 
             current = current.getNext();
 
@@ -55,18 +89,24 @@ public class TreeList implements Iterable<Tree> {
      * Adds a tree to the collection.
      * 
      * @param tree the tree to add.
-     * @throws IllegalArgumentException if tree is null.
+     * @throws IllegalArgumentException if tree is {@code null}.
      */
     public void add(Tree tree) {
         if (tree == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: tree.");
         } else {
-            TreeListNode node = new TreeListNode(tree);
+            final TreeListNode node = new TreeListNode(tree);
 
             if (tail == null) {
+                // If the linked list is empty, the new node is both the first and the last
+                // node
+
                 head = node;
                 tail = node;
             } else {
+                // If the linked list is not empty, the new node follows the existing last node,
+                // and is thus the new last node
+
                 tail.next = node;
                 tail = node;
             }
@@ -95,7 +135,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getCommonName().equalsIgnoreCase(speciesName)) {
+            if (tree.getSpc_common().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -114,7 +154,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getLatinName().equalsIgnoreCase(speciesName)) {
+            if (tree.getSpc_Latin().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -133,7 +173,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBorough().equalsIgnoreCase(boroName)) {
+            if (tree.getBoroname().equalsIgnoreCase(boroName)) {
                 result++;
             }
         }
@@ -147,14 +187,14 @@ public class TreeList implements Iterable<Tree> {
      * comparisons are case-insensitive.
      * 
      * @param speciesName the common name.
-     * @param boroName the borough name.
+     * @param boroName    the borough name.
      * @return The number of trees with the given common name in the given borough.
      */
     public int getCountByCommonNameBorough(String speciesName, String boroName) {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBorough().equalsIgnoreCase(boroName) && tree.getCommonName().equalsIgnoreCase(speciesName)) {
+            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_common().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -168,14 +208,15 @@ public class TreeList implements Iterable<Tree> {
      * comparisons are case-insensitive.
      * 
      * @param speciesName the scientific name.
-     * @param boroName the borough name.
-     * @return The number of trees with the given scientific name in the given borough.
+     * @param boroName    the borough name.
+     * @return The number of trees with the given scientific name in the given
+     *         borough.
      */
     public int getCountByLatinNameBorough(String speciesName, String boroName) {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBorough().equalsIgnoreCase(boroName) && tree.getLatinName().equalsIgnoreCase(speciesName)) {
+            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_Latin().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -192,9 +233,12 @@ public class TreeList implements Iterable<Tree> {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder("[");
-        Iterator<Tree> treeListIterator = iterator();
+        final StringBuilder result = new StringBuilder("[");
+        final Iterator<Tree> treeListIterator = iterator();
+
         boolean hasNext = treeListIterator.hasNext();
+
+        // If there are any elements, iteratively append them within the brackets
 
         while (hasNext) {
             Tree current = treeListIterator.next();
@@ -202,6 +246,8 @@ public class TreeList implements Iterable<Tree> {
             result.append(current);
 
             hasNext = treeListIterator.hasNext();
+
+            // If there are more elements, add a trailing comma
 
             if (hasNext) {
                 result.append(", ");

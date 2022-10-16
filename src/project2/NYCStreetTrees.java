@@ -22,6 +22,9 @@ public class NYCStreetTrees {
      * @param args the command-line arguments to the program.
      */
     public static void main(String[] args) {
+        // This try-catch block only catches exceptions thrown within the program
+        // itself; exceptions thrown from library functions should be caught elsewhere
+
         try {
             if (args.length == 0) {
                 throw new IllegalArgumentException(
@@ -67,10 +70,15 @@ public class NYCStreetTrees {
                 }
             }
         } catch (IllegalArgumentException illegalArgumentException) {
+            // Catch exception that the program throws missing command-line arguments
+
             System.err.println(illegalArgumentException.getLocalizedMessage());
         } catch (IOException ioException) {
+            // Catch exception that the program throws when the file could not be read
+
             System.err.println(ioException.getLocalizedMessage());
         } catch (Exception exception) {
+            // Catch other exceptions thrown by the program
             System.err.println("An unexpected error occurred.");
         }
     }
@@ -88,20 +96,31 @@ public class NYCStreetTrees {
 
     private int frequency = 0;
 
+    /**
+     * Initializes a new instance of the {@link NYCStreetTrees} class.
+     * 
+     * @param path The path to the comma-delimited (*.csv) dataset.
+     * @throws IOException if an error occurs while attempting to access the
+     *                     dataset.
+     */
     private NYCStreetTrees(String path) throws IOException {
         try (FileInputStream fileInputStream = new FileInputStream(path)) {
             try (CSV csv = new CSV(fileInputStream)) {
+                // Skip the header row
+
                 if (csv.hasNext()) {
                     csv.next();
                 }
 
                 while (csv.hasNext()) {
                     final List<String> fields = csv.next();
-                    
+
                     TreeSpecies species = new TreeSpecies(fields.get(9), fields.get(8));
-                    
+
+                    // Retrieve an tree species or construct a new one (avoid duplicates)
+
                     final int index = this.species.indexOf(species);
-                    
+
                     if (index == -1) {
                         this.species.add(species);
                     } else {
@@ -112,10 +131,10 @@ public class NYCStreetTrees {
 
                     tree.setStatus(fields.get(6));
                     tree.setHealth(fields.get(7));
-                    tree.setZipCode(Integer.parseInt(fields.get(25)));
-                    tree.setBorough(fields.get(29));
-                    tree.setX(Double.parseDouble(fields.get(39)));
-                    tree.setY(Double.parseDouble(fields.get(40)));
+                    tree.setZipcode(Integer.parseInt(fields.get(25)));
+                    tree.setBoroname(fields.get(29));
+                    tree.setX_sp(Double.parseDouble(fields.get(39)));
+                    tree.setY_sp(Double.parseDouble(fields.get(40)));
 
                     trees.add(tree);
                 }
@@ -124,15 +143,32 @@ public class NYCStreetTrees {
             throw new IOException("Runtime error: An error occurred while attempting to access " + path + ".");
         }
 
+        // Calculate the total number of trees in each borough
+
         for (int i = 0; i < BOROUGHS.length; i++) {
             totals[i] = trees.getCountByBorough(BOROUGHS[i]);
         }
     }
 
+    /**
+     * Populates internal data structures that record matches and frequencies of
+     * tree species based on the given keyword.
+     * 
+     * @param keyword The species keyword.
+     * @return {@code true} if there is at least one tree speices that matches the
+     *         given
+     *         keyword in the dataset; otherwise, {@code false}.
+     */
     private boolean summarize(String keyword) {
+        // Reset the frequency of the given species in New York City
+
         frequency = 0;
 
+        // Reset the frequency of the given species in each borough
+
         Arrays.fill(frequencies, 0);
+
+        // Reset the matching species names
 
         speciesNames.clear();
 
@@ -146,7 +182,10 @@ public class NYCStreetTrees {
 
             if (byCommonName != null) {
                 for (TreeSpecies item : byCommonName) {
-                    String commonName = item.getCommonName();
+                    final String commonName = item.getCommonName();
+
+                    // Record the matching species common name and TreeSpecies instance if it has
+                    // not yet been found
 
                     if (!speciesNames.contains(commonName)) {
                         speciesNames.add(commonName);
@@ -160,7 +199,10 @@ public class NYCStreetTrees {
 
             if (byLatinName != null) {
                 for (TreeSpecies item : byLatinName) {
-                    String latinName = item.getLatinName();
+                    final String latinName = item.getLatinName();
+
+                    // Record the matching species Latin name and TreeSpecies instance if it has
+                    // not yet been found
 
                     if (!speciesNames.contains(latinName)) {
                         speciesNames.add(latinName);
@@ -175,7 +217,13 @@ public class NYCStreetTrees {
             for (TreeSpecies item : bySpecies) {
                 final String latinName = item.getLatinName();
 
+                // Use each matching species's Latin name to get its frequency in New York City
+                // and include this in the total for all matching species
+
                 frequency += trees.getCountByLatinName(latinName);
+
+                // For each species and each borough, add the frequency to the total for all
+                // matching species in that borough
 
                 for (int i = 0; i < BOROUGHS.length; i++) {
                     frequencies[i] += trees.getCountByLatinNameBorough(latinName, BOROUGHS[i]);

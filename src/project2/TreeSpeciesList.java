@@ -14,18 +14,22 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
 
     /**
      * Constructs a new collection of tree species containing the species whose
-     * common names contain a given keyword as a substring.
+     * common names contain a given keyword as a substring. The comparison is
+     * case-insensitive.
      * 
      * @param keyword The substring present in all the common names of the species
      *                in the output.
-     * @return The collection of matching tree species.
-     * @throws IllegalArgumentException if keyword is null.
+     * @return The collection of matching tree species, or {@code null} if there are
+     *         no matching species.
+     * @throws IllegalArgumentException if keyword is {@code null}.
      */
     public TreeSpeciesList getByCommonName(String keyword) {
         if (keyword == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: keyword.");
         } else {
-            TreeSpeciesList results = new TreeSpeciesList();
+            final TreeSpeciesList results = new TreeSpeciesList();
+
+            // Convert common name and keyword to upper case to preserve case-insensitivity
 
             keyword = keyword.toUpperCase();
 
@@ -45,19 +49,23 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
 
     /**
      * Constructs a new collection of tree species containing the species whose
-     * Latin names contain a given keyword as a substring.
+     * Latin names contain a given keyword as a substring. the comparison is
+     * case-insensitive.
      * 
      * @param keyword The substring present in all the Latin names of the species in
      *                the output.
-     * @return The collection of matching tree species.
-     * @throws IllegalArgumentException if keyword is null.
+     * @return The collection of matching tree species, or {@code null} if there are
+     *         no matching species.
+     * @throws IllegalArgumentException if keyword is {@code null}.
      */
     public TreeSpeciesList getByLatinName(String keyword) {
         if (keyword == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: keyword.");
         } else {
             final TreeSpeciesList results = new TreeSpeciesList();
-            
+
+            // Convert Latin name and keyword to upper case to preserve case-insensitivity
+
             keyword = keyword.toUpperCase();
 
             for (TreeSpecies species : this) {

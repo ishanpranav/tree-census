@@ -63,7 +63,9 @@ public class NYCStreetTrees {
 
                                 System.out.println();
                             } else {
-                                System.out.println("There are no records of " + line + " on NYC streets.");
+                                System.out.println();
+                                System.out.println("There are no records of " + line + " on NYC streets");
+                                System.out.println();
                             }
                         }
                     }
@@ -106,6 +108,7 @@ public class NYCStreetTrees {
     private NYCStreetTrees(String path) throws IOException {
         try (FileInputStream fileInputStream = new FileInputStream(path)) {
             try (CSV csv = new CSV(fileInputStream)) {
+
                 // Skip the header row
 
                 if (csv.hasNext()) {
@@ -127,16 +130,53 @@ public class NYCStreetTrees {
                         species = this.species.get(index);
                     }
 
-                    final Tree tree = new Tree(Integer.parseInt(fields.get(0)), species);
+                    final String idField = fields.get(0);
 
-                    tree.setStatus(fields.get(6));
-                    tree.setHealth(fields.get(7));
-                    tree.setZipcode(Integer.parseInt(fields.get(25)));
-                    tree.setBoroname(fields.get(29));
-                    tree.setX_sp(Double.parseDouble(fields.get(39)));
-                    tree.setY_sp(Double.parseDouble(fields.get(40)));
+                    if (idField.length() > 0) {
+                        final Tree tree = new Tree(Integer.parseInt(idField), species);
 
-                    trees.add(tree);
+                        tree.setStatus(fields.get(6));
+                        tree.setHealth(fields.get(7));
+
+                        final String zipCodeField = fields.get(25);
+                        
+                        int zipCode;
+
+                        if (zipCodeField.length() == 0) {
+                            zipCode = 0;
+                        } else {
+                            zipCode = Integer.parseInt(zipCodeField);
+                        }
+
+                        tree.setZipcode(zipCode);
+                        tree.setBoroname(fields.get(29));
+
+                        final String xField = fields.get(39);
+                        
+                        double x;
+
+                        if (xField.length() == 0) {
+                            x = Double.parseDouble(xField);
+                        } else {
+                            x = 0;
+                        }
+
+                        tree.setX_sp(x);
+
+                        final String yField = fields.get(40);
+
+                        double y;
+
+                        if (yField.length() == 0) {
+                            y = Double.parseDouble(yField);
+                        } else {
+                            y = 0;
+                        }
+
+                        tree.setY_sp(y);
+
+                        trees.add(tree);
+                    }
                 }
             }
         } catch (IOException ioException) {

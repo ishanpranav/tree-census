@@ -49,7 +49,7 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
 
     /**
      * Constructs a new collection of tree species containing the species whose
-     * Latin names contain a given keyword as a substring. the comparison is
+     * Latin names contain a given keyword as a substring. The comparison is
      * case-insensitive.
      * 
      * @param keyword The substring present in all the Latin names of the species in

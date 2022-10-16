@@ -130,7 +130,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return The scientific name, a non-null string.
      */
-    public String getSpc_Latin() {
+    public String getSpc_latin() {
         return species.getLatinName();
     }
 
@@ -267,7 +267,7 @@ public class Tree implements Comparable<Tree> {
         } else {
             Tree other = (Tree) obj;
 
-            return treeID == other.treeID && getSpc_Latin().equalsIgnoreCase(other.getSpc_Latin())
+            return treeID == other.treeID && getSpc_latin().equalsIgnoreCase(other.getSpc_latin())
                     && getSpc_common().equalsIgnoreCase(other.getSpc_common());
         }
     }
@@ -275,12 +275,12 @@ public class Tree implements Comparable<Tree> {
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(treeID, getSpc_Latin(), getSpc_common());
+        return Objects.hash(treeID, getSpc_latin(), getSpc_common());
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return String.format("%s (%s) #%d", getSpc_common(), getSpc_Latin(), treeID);
+        return String.format("%s (%s) #%d", getSpc_common(), getSpc_latin(), treeID);
     }
 }

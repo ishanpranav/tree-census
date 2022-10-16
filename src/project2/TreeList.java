@@ -154,7 +154,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getSpc_Latin().equalsIgnoreCase(speciesName)) {
+            if (tree.getSpc_latin().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -216,7 +216,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_Latin().equalsIgnoreCase(speciesName)) {
+            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_latin().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }

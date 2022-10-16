@@ -27,8 +27,10 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
         } else {
             TreeSpeciesList results = new TreeSpeciesList();
 
+            keyword = keyword.toUpperCase();
+
             for (TreeSpecies species : this) {
-                if (species.getCommonName().toUpperCase().contains(keyword.toUpperCase())) {
+                if (species.getCommonName().toUpperCase().contains(keyword)) {
                     results.add(species);
                 }
             }
@@ -54,10 +56,12 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
         if (keyword == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: keyword.");
         } else {
-            TreeSpeciesList results = new TreeSpeciesList();
+            final TreeSpeciesList results = new TreeSpeciesList();
+            
+            keyword = keyword.toUpperCase();
 
             for (TreeSpecies species : this) {
-                if (species.getLatinName().toUpperCase().contains(keyword.toUpperCase())) {
+                if (species.getLatinName().toUpperCase().contains(keyword)) {
                     results.add(species);
                 }
             }

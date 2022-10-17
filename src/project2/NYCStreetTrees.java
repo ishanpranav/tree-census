@@ -22,6 +22,8 @@ public class NYCStreetTrees {
      * @param args the command-line arguments to the program.
      */
     public static void main(String[] args) {
+        args = new String[] { "C:\\Users\\ishan\\Downloads\\2015_NYC_Tree_Census.csv" };
+
         // "Your program has to be a console based program (no graphical interface) -
         // this means that the program should not open any windows or dialog boxes to
         // prompt user for the input. (Use the Scanner class to read the user input.)"
@@ -90,7 +92,7 @@ public class NYCStreetTrees {
                                 System.out.println();
                             } else {
                                 System.out.println();
-                                System.out.println("There are no records of " + line + " on NYC streets.");
+                                System.out.println("Tere are no records of " + line + " on NYC streets");
                                 System.out.println();
                             }
                         }
@@ -282,7 +284,7 @@ public class NYCStreetTrees {
             }
 
             for (TreeSpecies item : bySpecies) {
-                final String latinName = item.getLatinName();
+                final String latinName = item.getCommonName();
 
                 // Use each matching species's Latin name to get its frequency in New York City
                 // and include this in the total for all matching species
@@ -293,7 +295,7 @@ public class NYCStreetTrees {
                 // matching species in that borough
 
                 for (int i = 0; i < BOROUGHS.length; i++) {
-                    frequencies[i] += trees.getCountByLatinNameBorough(latinName, BOROUGHS[i]);
+                    frequencies[i] += trees.getCountByCommonNameBorough(latinName, BOROUGHS[i]);
                 }
             }
 

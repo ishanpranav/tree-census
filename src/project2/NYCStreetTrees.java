@@ -22,8 +22,6 @@ public class NYCStreetTrees {
      * @param args the command-line arguments to the program.
      */
     public static void main(String[] args) {
-        args = new String[] { "C:\\Users\\ishan\\Downloads\\2015_NYC_Tree_Census.csv" };
-
         // "Your program has to be a console based program (no graphical interface) -
         // this means that the program should not open any windows or dialog boxes to
         // prompt user for the input. (Use the Scanner class to read the user input.)"

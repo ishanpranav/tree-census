@@ -95,7 +95,7 @@ public class CSV implements Closeable, Iterator<List<String>> {
 
 		if (fieldBuilder.length() > 0) {
 			// Realize remaining characters and include them as the last field
-	
+
 			results.add(fieldBuilder.toString().trim());
 		}
 

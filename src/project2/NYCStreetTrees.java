@@ -116,8 +116,15 @@ public class NYCStreetTrees {
     }
 
     private static void printPopularity(String borough, int frequency, int total) {
-        System.out.printf("\t%-14s:%21s%9.2f%%\n", borough, String.format("%,d(%,d)", frequency, total),
-                100d * frequency / total);
+        final double percentage;
+
+        if (total == 0) {
+            percentage = 0;
+        } else {
+            percentage = 100d * frequency / total;
+        }
+
+        System.out.printf("\t%-14s:%21s%9.2f%%\n", borough, String.format("%,d(%,d)", frequency, total), percentage);
     }
 
     private final int[] totals = new int[BOROUGHS.length];

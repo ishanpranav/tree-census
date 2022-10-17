@@ -90,7 +90,7 @@ public class NYCStreetTrees {
                                 System.out.println();
                             } else {
                                 System.out.println();
-                                System.out.println("Tere are no records of " + line + " on NYC streets");
+                                System.out.println("There are no records of " + line + " on NYC streets.");
                                 System.out.println();
                             }
                         }

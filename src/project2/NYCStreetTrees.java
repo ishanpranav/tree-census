@@ -166,19 +166,14 @@ public class NYCStreetTrees {
                     final String commonName = fields.get(9);
 
                     if (idField.length() > 0 && commonName.length() > 0) {
+
                         TreeSpecies species = new TreeSpecies(commonName, fields.get(8));
 
-                        // Retrieve an tree species if found
+                        // Eliminate duplicates
 
-                        final int index = this.species.indexOf(species);
-
-                        if (index == -1) {
+                        if (!this.species.contains(species)) {
                             this.species.add(species);
-                        } else {
-                            species = this.species.get(index);
                         }
-
-                        // Construct a new tree species if there are no duplicates
 
                         final Tree tree = new Tree(Integer.parseInt(idField), species);
 

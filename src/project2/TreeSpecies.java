@@ -3,7 +3,7 @@ package project2;
 import java.util.Objects;
 
 /**
- * Represents a tree species.
+ * Represents a single tree species with a common and Latin name.
  */
 public class TreeSpecies {
     private String latinName;

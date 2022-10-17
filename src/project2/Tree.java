@@ -3,7 +3,7 @@ package project2;
 import java.util.Objects;
 
 /**
- * Represents a tree in New York City.
+ * Represents a particular tree in New York City.
  * 
  * @author Ishan Pranav
  */

@@ -282,18 +282,18 @@ public class NYCStreetTrees {
             }
 
             for (TreeSpecies item : bySpecies) {
-                final String latinName = item.getCommonName();
+                final String commonName = item.getCommonName();
 
-                // Use each matching species's Latin name to get its frequency in New York City
+                // Use each matching species's common name to get its frequency in New York City
                 // and include this in the total for all matching species
 
-                frequency += trees.getCountByLatinName(latinName);
+                frequency += trees.getCountByCommonName(commonName);
 
                 // For each species and each borough, add the frequency to the total for all
                 // matching species in that borough
 
                 for (int i = 0; i < BOROUGHS.length; i++) {
-                    frequencies[i] += trees.getCountByCommonNameBorough(latinName, BOROUGHS[i]);
+                    frequencies[i] += trees.getCountByCommonNameBorough(commonName, BOROUGHS[i]);
                 }
             }
 

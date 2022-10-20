@@ -39,6 +39,8 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
                 }
             }
 
+            // Return null instead of empty collection
+            
             if (results.size() == 0) {
                 return null;
             } else {
@@ -73,6 +75,8 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
                     results.add(species);
                 }
             }
+
+            // Return null instead of empty collection
 
             if (results.size() == 0) {
                 return null;

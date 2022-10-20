@@ -21,7 +21,7 @@ public class Tree implements Comparable<Tree> {
 
     private final int treeID;
     private final TreeSpecies species;
-    
+
     private String status;
     private String health;
     private int zipCode;

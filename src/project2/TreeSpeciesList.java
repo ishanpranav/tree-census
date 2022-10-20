@@ -40,7 +40,7 @@ public class TreeSpeciesList extends ArrayList<TreeSpecies> {
             }
 
             // Return null instead of empty collection
-            
+
             if (results.size() == 0) {
                 return null;
             } else {

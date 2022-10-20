@@ -59,11 +59,16 @@ public class NYCStreetTrees {
                             // Populate totals, frequencies, and sorted species names for each borough
 
                             if (program.summarize(line)) {
+                                // At least one matching species
+
                                 System.out.println("All matching species:");
 
                                 for (String speciesName : program.speciesNames) {
                                     System.out.print('\t');
-                                    System.out.println(speciesName);
+
+                                    // Print lower-case species names
+
+                                    System.out.println(speciesName.toLowerCase());
                                 }
 
                                 System.out.println();
@@ -77,6 +82,8 @@ public class NYCStreetTrees {
 
                                 System.out.println();
                             } else {
+                                // No matching species
+                                
                                 System.out.println();
                                 System.out.println("Tere are no records of " + line + " on NYC streets");
                                 System.out.println();

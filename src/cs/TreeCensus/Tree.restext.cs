@@ -4,7 +4,7 @@ namespace TreeCensus
 {
     partial class Tree
     {
-        private static ResourceManager s_resourceManager = new ResourceManager(typeof(Tree));
+        private static readonly ResourceManager s_resourceManager = new ResourceManager(typeof(Tree));
 
         private static string? ArgumentOutOfRangeException
         {

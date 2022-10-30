@@ -2,19 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace TreeCensus
 {
     /// <summary>
     /// Represents a collection of trees.
     /// </summary>
-    public partial class TreeCollection : IEnumerable<Tree>
+    public partial class TreeCollection : IReadOnlyCollection<Tree>, ICollection, ICollection<Tree>
     {
         private readonly HashSet<Tree> _items = new HashSet<Tree>();
 
-        /// <summary>
-        /// Gets the total number of trees in the collection.
-        /// </summary>
+        private object? _syncRoot;
+
+        /// <inheritdoc/>
         public int Count
         {
             get
@@ -23,13 +24,36 @@ namespace TreeCensus
             }
         }
 
-        /// <summary>
-        /// Adds a tree to the collection.
-        /// </summary>
-        /// <param name="item">The tree to add.</param>
-        public void Add(Tree item)
+        /// <inheritdoc/>
+        bool ICollection.IsSynchronized
         {
-            _items.Add(item);
+            get
+            {
+                return false;
+            }
+        }
+
+        /// <inheritdoc/>
+        object ICollection.SyncRoot
+        {
+            get
+            {
+                if (_syncRoot == null)
+                {
+                    Interlocked.CompareExchange(ref _syncRoot, new object(), comparand: null);
+                }
+
+                return _syncRoot;
+            }
+        }
+
+        /// <inheritdoc/>
+        bool ICollection<Tree>.IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -85,6 +109,34 @@ namespace TreeCensus
         }
 
         /// <inheritdoc/>
+        public void Add(Tree item)
+        {
+            _items.Add(item);
+        }
+
+        /// <inheritdoc/>
+        public void CopyTo(Tree[] array, int arrayIndex)
+        {
+            _items.CopyTo(array, arrayIndex);
+        }
+
+        /// <inheritdoc/>
+        void ICollection.CopyTo(Array array, int index)
+        {
+            ((ICollection)_items).CopyTo(array, index);
+        }
+
+        public void Clear()
+        {
+            _items.Clear();
+        }
+
+        public bool Contains(Tree item)
+        {
+            return _items.Contains(item);
+        }
+
+        /// <inheritdoc/>
         public IEnumerator<Tree> GetEnumerator()
         {
             return _items.GetEnumerator();
@@ -94,6 +146,11 @@ namespace TreeCensus
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public bool Remove(Tree item)
+        {
+            return _items.Remove(item);
         }
     }
 }

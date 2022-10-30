@@ -153,12 +153,6 @@ references:
   commentId: M:TreeCensus.Tree.#ctor
   fullName: TreeCensus.Tree.Tree()
   nameWithType: Tree.Tree()
-- uid: TreeCensus.Tree.#ctor(System.Int32,TreeCensus.TreeSpecies)
-  name: Tree(Int32, TreeSpecies)
-  href: api/TreeCensus.Tree.html#TreeCensus_Tree__ctor_System_Int32_TreeCensus_TreeSpecies_
-  commentId: M:TreeCensus.Tree.#ctor(System.Int32,TreeCensus.TreeSpecies)
-  fullName: TreeCensus.Tree.Tree(System.Int32, TreeCensus.TreeSpecies)
-  nameWithType: Tree.Tree(Int32, TreeSpecies)
 - uid: TreeCensus.Tree.#ctor*
   name: Tree
   href: api/TreeCensus.Tree.html#TreeCensus_Tree__ctor_
@@ -378,6 +372,48 @@ references:
   isSpec: "True"
   fullName: TreeCensus.TreeCollection.Add
   nameWithType: TreeCollection.Add
+- uid: TreeCensus.TreeCollection.Clear
+  name: Clear()
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Clear
+  commentId: M:TreeCensus.TreeCollection.Clear
+  fullName: TreeCensus.TreeCollection.Clear()
+  nameWithType: TreeCollection.Clear()
+- uid: TreeCensus.TreeCollection.Clear*
+  name: Clear
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Clear_
+  commentId: Overload:TreeCensus.TreeCollection.Clear
+  isSpec: "True"
+  fullName: TreeCensus.TreeCollection.Clear
+  nameWithType: TreeCollection.Clear
+- uid: TreeCensus.TreeCollection.Contains(TreeCensus.Tree)
+  name: Contains(Tree)
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Contains_TreeCensus_Tree_
+  commentId: M:TreeCensus.TreeCollection.Contains(TreeCensus.Tree)
+  fullName: TreeCensus.TreeCollection.Contains(TreeCensus.Tree)
+  nameWithType: TreeCollection.Contains(Tree)
+- uid: TreeCensus.TreeCollection.Contains*
+  name: Contains
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Contains_
+  commentId: Overload:TreeCensus.TreeCollection.Contains
+  isSpec: "True"
+  fullName: TreeCensus.TreeCollection.Contains
+  nameWithType: TreeCollection.Contains
+- uid: TreeCensus.TreeCollection.CopyTo(TreeCensus.Tree[],System.Int32)
+  name: CopyTo(Tree[], Int32)
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_CopyTo_TreeCensus_Tree___System_Int32_
+  commentId: M:TreeCensus.TreeCollection.CopyTo(TreeCensus.Tree[],System.Int32)
+  name.vb: CopyTo(Tree(), Int32)
+  fullName: TreeCensus.TreeCollection.CopyTo(TreeCensus.Tree[], System.Int32)
+  fullName.vb: TreeCensus.TreeCollection.CopyTo(TreeCensus.Tree(), System.Int32)
+  nameWithType: TreeCollection.CopyTo(Tree[], Int32)
+  nameWithType.vb: TreeCollection.CopyTo(Tree(), Int32)
+- uid: TreeCensus.TreeCollection.CopyTo*
+  name: CopyTo
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_CopyTo_
+  commentId: Overload:TreeCensus.TreeCollection.CopyTo
+  isSpec: "True"
+  fullName: TreeCensus.TreeCollection.CopyTo
+  nameWithType: TreeCollection.CopyTo
 - uid: TreeCensus.TreeCollection.Count
   name: Count
   href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Count
@@ -469,6 +505,87 @@ references:
   isSpec: "True"
   fullName: TreeCensus.TreeCollection.GetEnumerator
   nameWithType: TreeCollection.GetEnumerator
+- uid: TreeCensus.TreeCollection.Remove(TreeCensus.Tree)
+  name: Remove(Tree)
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Remove_TreeCensus_Tree_
+  commentId: M:TreeCensus.TreeCollection.Remove(TreeCensus.Tree)
+  fullName: TreeCensus.TreeCollection.Remove(TreeCensus.Tree)
+  nameWithType: TreeCollection.Remove(Tree)
+- uid: TreeCensus.TreeCollection.Remove*
+  name: Remove
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_Remove_
+  commentId: Overload:TreeCensus.TreeCollection.Remove
+  isSpec: "True"
+  fullName: TreeCensus.TreeCollection.Remove
+  nameWithType: TreeCollection.Remove
+- uid: TreeCensus.TreeCollection.System#Collections#Generic#ICollection{TreeCensus#Tree}#IsReadOnly
+  name: ICollection<Tree>.IsReadOnly
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_Generic_ICollection_TreeCensus_Tree__IsReadOnly
+  commentId: P:TreeCensus.TreeCollection.System#Collections#Generic#ICollection{TreeCensus#Tree}#IsReadOnly
+  name.vb: System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+  fullName: TreeCensus.TreeCollection.System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+  nameWithType: TreeCollection.ICollection<Tree>.IsReadOnly
+  nameWithType.vb: TreeCollection.System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+- uid: TreeCensus.TreeCollection.System#Collections#Generic#ICollection{TreeCensus#Tree}#IsReadOnly*
+  name: ICollection<Tree>.IsReadOnly
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_Generic_ICollection_TreeCensus_Tree__IsReadOnly_
+  commentId: Overload:TreeCensus.TreeCollection.System#Collections#Generic#ICollection{TreeCensus#Tree}#IsReadOnly
+  isSpec: "True"
+  name.vb: System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+  fullName: TreeCensus.TreeCollection.System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+  nameWithType: TreeCollection.ICollection<Tree>.IsReadOnly
+  nameWithType.vb: TreeCollection.System.Collections.Generic.ICollection<TreeCensus.Tree>.IsReadOnly
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
+  name: ICollection.CopyTo(Array, Int32)
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_CopyTo_System_Array_System_Int32_
+  commentId: M:TreeCensus.TreeCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
+  name.vb: System.Collections.ICollection.CopyTo(Array, Int32)
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.CopyTo(System.Array, System.Int32)
+  nameWithType: TreeCollection.ICollection.CopyTo(Array, Int32)
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.CopyTo(Array, Int32)
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#CopyTo*
+  name: ICollection.CopyTo
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_CopyTo_
+  commentId: Overload:TreeCensus.TreeCollection.System#Collections#ICollection#CopyTo
+  isSpec: "True"
+  name.vb: System.Collections.ICollection.CopyTo
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.CopyTo
+  nameWithType: TreeCollection.ICollection.CopyTo
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.CopyTo
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#IsSynchronized
+  name: ICollection.IsSynchronized
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_IsSynchronized
+  commentId: P:TreeCensus.TreeCollection.System#Collections#ICollection#IsSynchronized
+  name.vb: System.Collections.ICollection.IsSynchronized
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.IsSynchronized
+  nameWithType: TreeCollection.ICollection.IsSynchronized
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.IsSynchronized
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#IsSynchronized*
+  name: ICollection.IsSynchronized
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_IsSynchronized_
+  commentId: Overload:TreeCensus.TreeCollection.System#Collections#ICollection#IsSynchronized
+  isSpec: "True"
+  name.vb: System.Collections.ICollection.IsSynchronized
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.IsSynchronized
+  nameWithType: TreeCollection.ICollection.IsSynchronized
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.IsSynchronized
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#SyncRoot
+  name: ICollection.SyncRoot
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_SyncRoot
+  commentId: P:TreeCensus.TreeCollection.System#Collections#ICollection#SyncRoot
+  name.vb: System.Collections.ICollection.SyncRoot
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.SyncRoot
+  nameWithType: TreeCollection.ICollection.SyncRoot
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.SyncRoot
+- uid: TreeCensus.TreeCollection.System#Collections#ICollection#SyncRoot*
+  name: ICollection.SyncRoot
+  href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_ICollection_SyncRoot_
+  commentId: Overload:TreeCensus.TreeCollection.System#Collections#ICollection#SyncRoot
+  isSpec: "True"
+  name.vb: System.Collections.ICollection.SyncRoot
+  fullName: TreeCensus.TreeCollection.System.Collections.ICollection.SyncRoot
+  nameWithType: TreeCollection.ICollection.SyncRoot
+  nameWithType.vb: TreeCollection.System.Collections.ICollection.SyncRoot
 - uid: TreeCensus.TreeCollection.System#Collections#IEnumerable#GetEnumerator
   name: IEnumerable.GetEnumerator()
   href: api/TreeCensus.TreeCollection.html#TreeCensus_TreeCollection_System_Collections_IEnumerable_GetEnumerator

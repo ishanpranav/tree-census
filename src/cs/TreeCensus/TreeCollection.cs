@@ -9,7 +9,7 @@ namespace TreeCensus
     /// <summary>
     /// Represents a collection of trees.
     /// </summary>
-    public partial class TreeCollection : IReadOnlyCollection<Tree>, ICollection, ICollection<Tree>
+    public partial class TreeCollection : ICollection, ICollection<Tree>, IReadOnlyCollection<Tree>
     {
         private readonly HashSet<Tree> _items = new HashSet<Tree>();
 

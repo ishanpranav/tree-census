@@ -1,5 +1,6 @@
 package project2;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 /**
@@ -24,6 +25,8 @@ public class TreeList implements Iterable<Tree> {
     }
 
     private class TreeListIterator implements Iterator<Tree> {
+        private final int expectedCount = count;
+
         private TreeListNode current = head;
 
         @Override
@@ -33,11 +36,15 @@ public class TreeList implements Iterable<Tree> {
 
         @Override
         public Tree next() {
-            Tree result = current.getValue();
+            if (count != expectedCount) {
+                throw new ConcurrentModificationException();
+            } else {
+                Tree result = current.getValue();
 
-            current = current.getNext();
+                current = current.getNext();
 
-            return result;
+                return result;
+            }
         }
     }
 
@@ -147,7 +154,7 @@ public class TreeList implements Iterable<Tree> {
      * comparisons are case-insensitive.
      * 
      * @param speciesName the common name.
-     * @param boroName the borough name.
+     * @param boroName    the borough name.
      * @return The number of trees with the given common name in the given borough.
      */
     public int getCountByCommonNameBorough(String speciesName, String boroName) {
@@ -168,8 +175,9 @@ public class TreeList implements Iterable<Tree> {
      * comparisons are case-insensitive.
      * 
      * @param speciesName the scientific name.
-     * @param boroName the borough name.
-     * @return The number of trees with the given scientific name in the given borough.
+     * @param boroName    the borough name.
+     * @return The number of trees with the given scientific name in the given
+     *         borough.
      */
     public int getCountByLatinNameBorough(String speciesName, String boroName) {
         int result = 0;

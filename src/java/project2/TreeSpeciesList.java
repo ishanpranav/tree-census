@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Represents a collection of tree species.
+ * 
+ * @author Ishan Pranav
  */
 public class TreeSpeciesList extends ArrayList<TreeSpecies> {
     /**

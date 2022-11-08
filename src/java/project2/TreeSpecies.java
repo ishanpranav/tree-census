@@ -4,6 +4,8 @@ import java.util.Objects;
 
 /**
  * Represents a tree species.
+ * 
+ * @author Ishan Pranav
  */
 public class TreeSpecies implements Species {
     private String latinName;

@@ -5,6 +5,8 @@ import java.util.Iterator;
 
 /**
  * Represents a collection of trees.
+ * 
+ * @author Ishan Pranav
  */
 public class TreeList implements Iterable<Tree> {
     private class TreeListNode {

@@ -3,6 +3,8 @@ package project2;
 /**
  * Defines methods for accessing the scientific (Latin) and common (English)
  * names of a species.
+ * 
+ * @author Ishan Pranav
  */
 public interface Species {
     /**

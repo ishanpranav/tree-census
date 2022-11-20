@@ -1,6 +1,8 @@
 package project2;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Represents a collection of trees.
@@ -15,7 +17,8 @@ public class TreeList implements Iterable<Tree> {
      * @author Ishan Pranav
      */
     private class TreeListNode {
-        private Tree value;
+        private final Tree value;
+
         private TreeListNode next;
 
         /**
@@ -26,30 +29,14 @@ public class TreeList implements Iterable<Tree> {
         public TreeListNode(Tree value) {
             this.value = value;
         }
-
-        /**
-         * Gets the next node in the linked list.
-         * 
-         * @return A reference to the next node.
-         */
-        public TreeListNode getNext() {
-            return next;
-        }
-
-        /**
-         * Gets the node data.
-         * 
-         * @return A {@link Tree} instance.
-         */
-        public Tree getValue() {
-            return value;
-        }
     }
 
     /**
      * Provides an iterator for the linked list.
      */
     private class TreeListIterator implements Iterator<Tree> {
+        private final int expectedVersion = version;
+
         private TreeListNode current = head;
 
         /**
@@ -64,18 +51,33 @@ public class TreeList implements Iterable<Tree> {
             return current != null;
         }
 
-        /** {@inheritDoc} */
+        /**
+         * Returns the next element in the iteration.
+         * 
+         * @throws ConcurrentModificationException if the list has been modified
+         *                                         concurrently with the iteration
+         * @throws NoSuchElementException          if the iteration has no more elements
+         */
         @Override
         public Tree next() {
-            final Tree result = current.getValue();
+            if (version != expectedVersion) {
+                throw new ConcurrentModificationException("Collection was modified during iteration.");
+            }
 
-            current = current.getNext();
+            if (current == null) {
+                throw new NoSuchElementException("Collection has no more elements.");
+            }
+
+            final Tree result = current.value;
+
+            current = current.next;
 
             return result;
         }
     }
 
     private int count;
+    private int version;
     private TreeListNode head;
     private TreeListNode tail;
 
@@ -94,25 +96,26 @@ public class TreeList implements Iterable<Tree> {
     public void add(Tree tree) {
         if (tree == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: tree.");
-        } else {
-            final TreeListNode node = new TreeListNode(tree);
-
-            if (tail == null) {
-                // If the linked list is empty, the new node is both the first and the last
-                // node
-
-                head = node;
-                tail = node;
-            } else {
-                // If the linked list is not empty, the new node follows the existing last node,
-                // and is thus the new last node
-
-                tail.next = node;
-                tail = node;
-            }
-
-            count++;
         }
+        
+        final TreeListNode node = new TreeListNode(tree);
+
+        if (tail == null) {
+            // If the linked list is empty, the new node is both the first and the last
+            // node
+
+            head = node;
+            tail = node;
+        } else {
+            // If the linked list is not empty, the new node follows the existing last node,
+            // and is thus the new last node
+
+            tail.next = node;
+            tail = node;
+        }
+
+        count++;
+        version++;
     }
 
     /**
@@ -135,7 +138,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getSpc_common().equalsIgnoreCase(speciesName)) {
+            if (tree.getCommonName().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -154,7 +157,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getSpc_latin().equalsIgnoreCase(speciesName)) {
+            if (tree.getLatinName().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -173,7 +176,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBoroname().equalsIgnoreCase(boroName)) {
+            if (tree.getBorough().equalsIgnoreCase(boroName)) {
                 result++;
             }
         }
@@ -194,7 +197,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_common().equalsIgnoreCase(speciesName)) {
+            if (tree.getBorough().equalsIgnoreCase(boroName) && tree.getCommonName().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }
@@ -216,7 +219,7 @@ public class TreeList implements Iterable<Tree> {
         int result = 0;
 
         for (Tree tree : this) {
-            if (tree.getBoroname().equalsIgnoreCase(boroName) && tree.getSpc_latin().equalsIgnoreCase(speciesName)) {
+            if (tree.getBorough().equalsIgnoreCase(boroName) && tree.getLatinName().equalsIgnoreCase(speciesName)) {
                 result++;
             }
         }

@@ -185,25 +185,25 @@ public class NYCStreetTrees {
                         final String zipCodeField = fields.get(25);
 
                         if (zipCodeField.length() > 0) {
-                            tree.setZipcode(Integer.parseInt(zipCodeField));
+                            tree.setZipCode(Integer.parseInt(zipCodeField));
                         }
 
                         final String borough = fields.get(29);
 
                         if (borough.length() > 0) {
-                            tree.setBoroname(borough);
+                            tree.setBorough(borough);
                         }
 
                         final String xField = fields.get(39);
 
                         if (xField.length() > 0) {
-                            tree.setX_sp(Double.parseDouble(xField));
+                            tree.setX(Double.parseDouble(xField));
                         }
 
                         final String yField = fields.get(40);
 
                         if (yField.length() > 0) {
-                            tree.setY_sp(Double.parseDouble(yField));
+                            tree.setY(Double.parseDouble(yField));
                         }
 
                         trees.add(tree);

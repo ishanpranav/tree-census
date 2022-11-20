@@ -58,7 +58,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return A non-negative integer identifier.
      */
-    public int getTree_id() {
+    public int getTreeID() {
         return treeID;
     }
 
@@ -130,7 +130,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return The scientific name, a non-null string.
      */
-    public String getSpc_latin() {
+    public String getLatinName() {
         return species.getLatinName();
     }
 
@@ -140,7 +140,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return The common name, a non-null string.
      */
-    public String getSpc_common() {
+    public String getCommonName() {
         return species.getCommonName();
     }
 
@@ -150,7 +150,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return The postcode, an integer between 00000 and 99999.
      */
-    public int getZipcode() {
+    public int getZipCode() {
         return zipCode;
     }
 
@@ -162,7 +162,7 @@ public class Tree implements Comparable<Tree> {
      * @throws IllegalArgumentException if zipCode is less than 0 or greater than
      *                                  99999.
      */
-    public void setZipcode(int zipCode) {
+    public void setZipCode(int zipCode) {
         if (zipCode >= 0 && zipCode <= 99999) {
             this.zipCode = zipCode;
         } else {
@@ -179,7 +179,7 @@ public class Tree implements Comparable<Tree> {
      *         {@code "Queens"}, or {@code "Staten Island"} to represent the
      *         borough. Borough names are case-insensitive.
      */
-    public String getBoroname() {
+    public String getBorough() {
         return borough;
     }
 
@@ -192,7 +192,7 @@ public class Tree implements Comparable<Tree> {
      *                borough. Borough names are case-insensitive.
      * @throws IllegalArgumentException if borough is not a valid borough name.
      */
-    public void setBoroname(String borough) {
+    public void setBorough(String borough) {
         for (String item : getBoroughs()) {
             if (item.equalsIgnoreCase(borough)) {
                 this.borough = item;
@@ -211,7 +211,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return The x-coordinate.
      */
-    public double getX_sp() {
+    public double getX() {
         return x;
     }
 
@@ -221,7 +221,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @param x the x-coordinate.
      */
-    public void setX_sp(double x) {
+    public void setX(double x) {
         this.x = x;
     }
 
@@ -231,7 +231,7 @@ public class Tree implements Comparable<Tree> {
      * 
      * @return the y-coordinate.
      */
-    public double getY_sp() {
+    public double getY() {
         return y;
     }
 
@@ -241,14 +241,14 @@ public class Tree implements Comparable<Tree> {
      * 
      * @param y the y-coordinate.
      */
-    public void setY_sp(double y) {
+    public void setY(double y) {
         this.y = y;
     }
 
     /** {@inheritDoc} */
     public int compareTo(Tree o) {
         Tree other = (Tree) o;
-        int result = getSpc_common().compareToIgnoreCase(other.getSpc_common());
+        int result = getCommonName().compareToIgnoreCase(other.getCommonName());
 
         if (result == 0) {
             Comparable<Integer> comparable = treeID;
@@ -267,20 +267,20 @@ public class Tree implements Comparable<Tree> {
         } else {
             Tree other = (Tree) obj;
 
-            return treeID == other.treeID && getSpc_latin().equalsIgnoreCase(other.getSpc_latin())
-                    && getSpc_common().equalsIgnoreCase(other.getSpc_common());
+            return treeID == other.treeID && getLatinName().equalsIgnoreCase(other.getLatinName())
+                    && getCommonName().equalsIgnoreCase(other.getCommonName());
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public int hashCode() {
-        return Objects.hash(treeID, getSpc_latin(), getSpc_common());
+        return Objects.hash(treeID, getLatinName(), getCommonName());
     }
 
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return String.format("%s (%s) #%d", getSpc_common(), getSpc_latin(), treeID);
+        return String.format("%s (%s) #%d", getCommonName(), getLatinName(), treeID);
     }
 }

@@ -13,7 +13,7 @@ import java.util.Scanner;
  * 
  * @author Ishan Pranav
  */
-public class NYCStreetTrees {
+public final class NYCStreetTrees {
     private static final String[] BOROUGHS = Tree.getBoroughs();
 
     /**

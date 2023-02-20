@@ -44,12 +44,14 @@ public class Tree implements Comparable<Tree> {
         if (treeID < 0) {
             throw new IllegalArgumentException(
                     "Value is out of range. A non-negative number is required. Argument name: treeID.");
-        } else if (species == null) {
+        } 
+        
+        if (species == null) {
             throw new IllegalArgumentException("Value cannot be null. Argument name: species.");
-        } else {
-            this.treeID = treeID;
-            this.species = species;
         }
+
+        this.treeID = treeID;
+        this.species = species;
     }
 
     /**
@@ -84,13 +86,17 @@ public class Tree implements Comparable<Tree> {
      * @throws IllegalArgumentException if status is not a valid status.
      */
     public void setStatus(String status) {
-        if (status == null || status.equals("") || status.equalsIgnoreCase("Alive") || status.equalsIgnoreCase("Dead")
-                || status.equalsIgnoreCase("Stump")) {
-            this.status = status;
-        } else {
+        if (status == null) {
+            return;
+        }
+        
+        if (!status.equals("") && !status.equalsIgnoreCase("Alive") && !status.equalsIgnoreCase("Dead")
+                && !status.equalsIgnoreCase("Stump")) {
             throw new IllegalArgumentException(
                     "A valid status value is required. Allowed values: null or empty, Alive, Dead, and Stump. Argument name: status.");
         }
+        
+        this.status = status;
     }
 
     /**
@@ -115,13 +121,17 @@ public class Tree implements Comparable<Tree> {
      * @throws IllegalArgumentException if health is not a valid health description.
      */
     public void setHealth(String health) {
-        if (health == null || health.equals("") || health.equalsIgnoreCase("Good") || health.equalsIgnoreCase("Fair")
-                || health.equalsIgnoreCase("Poor")) {
-            this.health = health;
-        } else {
+        if (health == null) {
+            return;
+        }
+        
+        if (!health.equals("") && health.equalsIgnoreCase("Good") && !health.equalsIgnoreCase("Fair")
+                && !health.equalsIgnoreCase("Poor")) {   
             throw new IllegalArgumentException(
                     "A valid health value is required. Allowed values: null or empty, Good, Fair, and Poor. Argument name: health.");
         }
+        
+        this.health = health;
     }
 
     /**
@@ -163,12 +173,12 @@ public class Tree implements Comparable<Tree> {
      *                                  99999.
      */
     public void setZipCode(int zipCode) {
-        if (zipCode >= 0 && zipCode <= 99999) {
-            this.zipCode = zipCode;
-        } else {
+        if (zipCode < 0 || zipCode > 99999) {
             throw new IllegalArgumentException(
                     "Value is out of range. Zip codes must be between 00000 and 99999, inclusive. Argument name: zipCode.");
         }
+        
+        this.zipCode = zipCode;
     }
 
     /**
@@ -264,12 +274,12 @@ public class Tree implements Comparable<Tree> {
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof Tree)) {
             return false;
-        } else {
-            Tree other = (Tree) obj;
-
-            return treeID == other.treeID && getLatinName().equalsIgnoreCase(other.getLatinName())
-                    && getCommonName().equalsIgnoreCase(other.getCommonName());
         }
+        
+        Tree other = (Tree) obj;
+
+        return treeID == other.treeID && getLatinName().equalsIgnoreCase(other.getLatinName())
+                && getCommonName().equalsIgnoreCase(other.getCommonName());
     }
 
     /** {@inheritDoc} */
